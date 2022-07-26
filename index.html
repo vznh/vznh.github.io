@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>im fr waking up Sign-up Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/fontawesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+          <div class="banner">
+            <h1>hey hey hey thanks for comin bawss</h1>
+            <p>enter yo phone number and we'll get cracka lackin</p>
+          </div>
+          <div class="green-bg">
+            <button type="button">sign me up fr</button>
+          </div>
+          <form class="signup-form">
+            <h1>Create your account</h1>
+            <div class="social-media">
+              <i class="fab fa-facebook-f"></i>
+              <i class="fab fa-instagram"></i>
+              <i class="fab fa-linkedin-in"></i>
+            </div>
+            <p>by using your email for registration</p>
+            <div class="input-group">
+              <i class="fas fa-user"></i>
+              <input type="text" id="name" placeholder="Name" />
+            </div>
+            <div class="input-group">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" placeholder="Email" />
+            </div>
+            <div class="input-group">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="password" placeholder="Password" />
+            </div>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="number" id="phone" placeholder="Phone Number" />
+            </div>
+            <div>
+                <input type="button" id="bt" value="Sign Up" onclick=saveFile() />
+            </div>
+          </form>
+        </div>
+      </div>
+    <script src="script.js"></script>
+</body>
+<script>
+let saveFile = () => {
+    	
+        // Get the data from each element on the form.
+    	const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const phone = document.getElementById('phone');
+        
+        // This variable stores all the data.
+        let data = 
+            '\r Name: ' + name.value + ' \r\n ' + 
+            'Email: ' +email.value + ' \r\n ' + 
+            'Password: ' + password.value + ' \r\n ' + 
+            'Phone Number: ' + phone.value + ' \r\n '
+        
+        // Convert the text to BLOB.
+        const textToBLOB = new Blob([data], { type: 'text/plain' });
+        const sFileName = 'formData.txt';	   // The file to save the data.
+
+        let newLink = document.createElement("a");
+        newLink.download = sFileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        }
+        else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+
+        newLink.click(); 
+    }
+</script>
+
+</html>
